@@ -23,6 +23,14 @@ Script này được thiết kế để thực thi trực tiếp qua **DevTools 
 ### Prerequisites
 Đảm bảo bạn đã cuộn (scroll) qua toàn bộ các trang của tài liệu trên trình duyệt để kích hoạt cơ chế Lazy-loading, giúp DOM tải đầy đủ các đối tượng `blob:`.
 
+### Known Limitations
+Dung lượng đầu ra: Do ưu tiên giữ nguyên độ phân giải gốc và nén JPEG ở mức chất lượng 0.95, file PDF xuất ra sẽ có kích thước tương đối lớn.
+
+Phụ thuộc vào tốc độ xử lý I/O và đồ họa của máy tính client.
+
+### Disclaimer
+Công cụ này được tạo ra với mục đích giáo dục, lưu trữ tài nguyên học tập cá nhân và nghiên cứu cách hoạt động của DOM/Canvas API. Vui lòng tuân thủ các quy định về bản quyền tài liệu của nền tảng khi sử dụng.
+
 ### Execution
 1. Mở trang web chứa tài liệu cần xuất.
 2. Mở Developer Tools (`F12` hoặc `Ctrl+Shift+I` / `Cmd+Option+I`).
