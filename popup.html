@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body { width: 340px; padding: 15px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; }
+        .header-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #ddd; padding-bottom: 8px; margin-bottom: 15px; }
+        h3 { margin: 0; font-size: 16px; }
+        #langToggle { background: none; border: 1px solid #ccc; border-radius: 4px; padding: 3px 8px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        #langToggle:hover { background: #f0f0f0; }
+        
+        .control-group { margin-bottom: 12px; }
+        .flex-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .flex-row input[type="number"] { width: 60px; padding: 4px; border: 1px solid #ccc; border-radius: 4px; }
+        select { flex: 1; padding: 5px; border-radius: 4px; border: 1px solid #ccc; font-family: inherit; }
+        .checkbox-group { display: flex; align-items: center; cursor: pointer; margin-bottom: 8px; font-size: 13px; }
+        .checkbox-group input { margin-right: 8px; width: 14px; height: 14px; cursor: pointer; }
+        input[type="range"] { width: 100%; margin-top: 5px; }
+        label { font-size: 13px; font-weight: 500; }
+        
+        .btn-group { display: flex; gap: 8px; margin-top: 15px; }
+        button.action-btn { flex: 1; padding: 10px 5px; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 13px;}
+        
+        #startBtn { background: #007bff; }
+        #startBtn:hover { background: #0056b3; }
+        #extractAllBtn { background: #28a745; }
+        #extractAllBtn:hover { background: #218838; }
+        #stopBtn { background: #dc3545; display: none; width: 100%; }
+        #stopBtn:hover { background: #a71d2a; }
+        
+        button:disabled { background: #ccc !important; cursor: not-allowed; }
+
+        .progress-container { margin-top: 15px; display: none; }
+        .progress-bar-bg { width: 100%; height: 8px; background: #eee; border-radius: 4px; overflow: hidden; margin-top: 5px; }
+        .progress-bar-fill { height: 100%; width: 0%; background: #28a745; transition: width 0.3s; }
+        #statusText { font-size: 12px; color: #666; font-style: italic; margin-top: 5px; display: block; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="header-row">
+        <h3 data-i18n="title">Document Extractor Pro</h3>
+        <button id="langToggle">🇻🇳 VN</button>
+    </div>
+    
+    <div class="control-group">
+        <label><span data-i18n="quality">Quality</span>: <b id="qualityText">95%</b></label>
+        <input type="range" id="qualitySlider" min="0.1" max="1.0" step="0.05" value="0.95">
+    </div>
+
+    <div class="control-group flex-row">
+        <label data-i18n="pageRange">Page Range:</label>
+        <div>
+            <input type="number" id="startPage" placeholder="Start" min="1"> - 
+            <input type="number" id="endPage" placeholder="End" min="1">
+        </div>
+    </div>
+
+    <div class="control-group flex-row">
+        <label data-i18n="format">Output Format:</label>
+        <select id="outputFormat">
+            <option value="pdf" data-i18n="optPdf">📄 Single PDF Document</option>
+            <option value="zip" data-i18n="optZip">🗂️ ZIP Archive (All Images)</option>
+        </select>
+    </div>
+
+    <div class="control-group">
+        <label class="checkbox-group">
+            <input type="checkbox" id="grayscale">
+            <span data-i18n="grayscale">Grayscale Mode (Smaller File Size)</span>
+        </label>
+        <label class="checkbox-group">
+            <input type="checkbox" id="autoScroll" checked>
+            <span data-i18n="autoScroll">Auto-scroll to load hidden images</span>
+        </label>
+    </div>
+
+    <div class="btn-group" id="primaryButtons">
+        <button id="startBtn" class="action-btn" data-i18n="startBtn">Extract Range</button>
+        <button id="extractAllBtn" class="action-btn" data-i18n="extractAllBtn">Download ALL</button>
+    </div>
+    <button id="stopBtn" class="action-btn" data-i18n="stopBtn">Stop</button>
+
+    <div class="progress-container" id="progressBox">
+        <div class="progress-bar-bg"><div class="progress-bar-fill" id="progressFill"></div></div>
+        <span id="statusText" data-i18n="statusInit">Initializing...</span>
+    </div>
+
+    <script src="popup.js"></script>
+</body>
+</html>

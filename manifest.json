@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Blob-to-PDF Extractor",
+  "version": "2.0",
+  "description": "Extract scanned documents into high-quality PDFs with advanced filtering.",
+  "permissions": [
+    "activeTab",
+    "scripting"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  }
+}
